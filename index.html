@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Significant Otter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000">
+    <style>
+        html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden;
+                     touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+        canvas { display: block; }
+        #embed-html { width: 100%; height: 100%; }
+        #rotate { display: none; position: fixed; inset: 0; background: #000; color: #fcfcfc; z-index: 10;
+                  font: bold 16px monospace; align-items: center; justify-content: center; text-align: center; }
+        @media (orientation: portrait) and (max-width: 900px) { #rotate { display: flex; } }
+    </style>
+</head>
+<body>
+    <div id="embed-html"></div>
+    <div id="rotate">TURN YOUR PHONE SIDEWAYS<br>TO PLAY</div>
+    <script src="html/html.nocache.js"></script>
+</body>
+</html>
