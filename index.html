@@ -24,6 +24,33 @@
         // iPhones mute web audio when the ring/silent switch is on silent; a game is "playback", like a video.
         try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
     </script>
+    <script>
+        // Browsers only allow fullscreen from a tap, so every tap asks for it until the game
+        // is finished (the game sets otterFinished at the very end). Phones also get locked
+        // sideways while it lasts, where that's supported. iPhones' Safari has no fullscreen
+        // for pages; there, adding the page to the home screen is what hides the browser bars.
+        (function () {
+            var root = document.documentElement;
+            function goFullscreen() {
+                if (window.otterFinished || document.fullscreenElement || document.webkitFullscreenElement) return;
+                var request = root.requestFullscreen || root.webkitRequestFullscreen;
+                if (!request) return;
+                try {
+                    var result = request.call(root, {navigationUI: 'hide'});
+                    if (result && result.then) {
+                        result.then(function () {
+                            if (screen.orientation && screen.orientation.lock) {
+                                screen.orientation.lock('landscape').catch(function () {});
+                            }
+                        }).catch(function () {});
+                    }
+                } catch (e) {}
+            }
+            ['pointerup', 'touchend', 'click', 'keyup'].forEach(function (name) {
+                document.addEventListener(name, goFullscreen, true);
+            });
+        })();
+    </script>
     <script src="html/html.nocache.js"></script>
 </body>
 </html>
