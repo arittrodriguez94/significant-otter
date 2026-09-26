@@ -20,6 +20,10 @@
 <body>
     <div id="embed-html"></div>
     <div id="rotate">TURN YOUR PHONE SIDEWAYS<br>TO PLAY</div>
+    <script>
+        // iPhones mute web audio when the ring/silent switch is on silent; a game is "playback", like a video.
+        try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
+    </script>
     <script src="html/html.nocache.js"></script>
 </body>
 </html>
